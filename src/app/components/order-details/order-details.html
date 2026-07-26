@@ -1,0 +1,70 @@
+<div class="container">
+
+    <div class="header">
+
+        <h1>Order #{{order.id}} Details</h1>
+
+        <button
+            (click)="back()">
+
+            Back To Orders
+
+        </button>
+
+    </div>
+
+    <p class="date">
+
+        Placed on:
+        {{order.date}}
+
+    </p>
+
+    <table>
+        
+        <thead>
+
+            <tr>
+
+                <th>Book</th>
+
+                <th>Unit Price</th>
+
+                <th>Qty</th>
+
+                <th>Subtotal</th>
+
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            @for(item of order.items; track item.book.id){
+
+            <tr>
+
+                <td>{{item.book.title}}</td>
+
+                <td>${{item.book.price}}</td>
+
+                <td>{{item.quantity}}</td>
+
+                <td>${{getSubtotal(item)}}</td>
+
+            </tr>
+
+            }
+
+        </tbody>
+
+    </table>
+
+    <div class="total">
+
+        Order Total:
+        ${{getTotal()}}
+
+    </div>
+
+</div>

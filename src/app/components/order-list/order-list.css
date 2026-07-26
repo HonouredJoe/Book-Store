@@ -1,0 +1,60 @@
+.container{
+
+    width:900px;
+    margin:40px auto;
+
+}
+
+.header{
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
+
+}
+
+.add-btn{
+
+    background:#198754;
+    color:white;
+    border:none;
+    padding:12px 20px;
+    border-radius:8px;
+    cursor:pointer;
+
+}
+
+table{
+
+    width:100%;
+    border-collapse:collapse;
+    background:white;
+
+}
+
+th,td{
+
+    padding:15px;
+    border-bottom:1px solid #ddd;
+    text-align:left;
+
+}
+
+th{
+
+    background:#0d6efd;
+    color:white;
+
+}
+
+.view{
+
+    background:#0d6efd;
+    color:white;
+    border:none;
+    padding:8px 15px;
+    border-radius:6px;
+    cursor:pointer;
+
+}

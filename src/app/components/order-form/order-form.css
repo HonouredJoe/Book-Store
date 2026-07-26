@@ -1,0 +1,152 @@
+.container{
+
+   background:white;
+border-radius:20px;
+padding:30px;
+box-shadow:0 10px 30px rgba(0,0,0,.08);
+}
+
+.wrapper{
+
+    display:flex;
+    gap:20px;
+
+}
+
+.books{
+
+    flex:2;
+
+    border:1px solid #ccc;
+
+    padding:20px;
+
+    border-radius:10px;
+
+}
+
+.cart{
+
+    flex:1;
+
+    border:1px solid #ccc;
+
+    padding:20px;
+
+    border-radius:10px;
+
+}
+
+.book-card{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:15px;
+
+    border:1px solid #ddd;
+
+    margin-bottom:15px;
+
+}
+
+.actions{
+
+    display:flex;
+
+    gap:10px;
+
+}
+
+.actions input{
+
+    width:60px;
+
+    padding:5px;
+
+}
+
+.actions button{
+
+    background:#198754;
+
+    color:white;
+
+    border:none;
+
+    padding:8px 15px;
+
+    cursor:pointer;
+
+    border-radius:5px;
+
+}
+
+.out{
+
+    background:#ffdada;
+
+    color:red;
+
+    padding:8px 15px;
+
+    border-radius:20px;
+
+}
+
+.cart-item{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    margin-bottom:15px;
+
+    align-items:center;
+
+}
+
+.delete{
+
+    background:#dc3545;
+
+    color:white;
+
+    border:none;
+
+    padding:5px 10px;
+
+    cursor:pointer;
+
+}
+
+.place{
+
+    width:100%;
+
+    padding:12px;
+
+    background:#163866;
+
+    color:white;
+
+    border:none;
+
+    margin-top:20px;
+
+    border-radius:5px;
+
+}
+
+.cancel{
+
+    width:100%;
+
+    padding:12px;
+
+    margin-top:10px;
+
+}

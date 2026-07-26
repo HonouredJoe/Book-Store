@@ -1,0 +1,71 @@
+.container{
+
+   background:white;
+border-radius:20px;
+padding:30px;
+box-shadow:0 10px 30px rgba(0,0,0,.08);
+
+}
+
+h1{
+
+    text-align:center;
+    margin-bottom:25px;
+
+}
+
+.form-group{
+
+    display:flex;
+    flex-direction:column;
+    margin-bottom:20px;
+
+}
+
+label{
+
+    margin-bottom:8px;
+    font-weight:bold;
+
+}
+
+input{
+
+    padding:12px;
+    border:1px solid #ccc;
+    border-radius:8px;
+    font-size:15px;
+
+}
+
+.buttons{
+
+    display:flex;
+    justify-content:space-between;
+    margin-top:20px;
+
+}
+
+button{
+
+    border:none;
+    padding:12px 20px;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:15px;
+
+}
+
+.save{
+
+    background:#198754;
+    color:white;
+
+}
+
+.cancel{
+
+    background:#dc3545;
+    color:white;
+
+}

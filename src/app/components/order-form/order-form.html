@@ -1,0 +1,131 @@
+<div class="container">
+
+    <h1>Create New Order</h1>
+
+    <div class="wrapper">
+
+        <div class="books">
+
+            <h2>Select Books</h2>
+
+            @for(book of bookstore.books(); track book.id){
+
+            <div class="book-card">
+
+                <div>
+
+                    <strong>{{book.title}}</strong>
+
+                    <br>
+
+                    ${{book.price}}
+
+                    ·
+
+                    {{book.quantity}} in stock
+
+                </div>
+
+                @if(book.quantity>0){
+
+                <div class="actions">
+
+                    <input
+                        type="number"
+                        min="1"
+                        [(ngModel)]="quantities[book.id]">
+
+                    <button
+                        (click)="addToCart(book)">
+
+                        Add
+
+                    </button>
+
+                </div>
+
+                }
+
+                @else{
+
+                <span class="out">
+
+                    Out Of Stock
+
+                </span>
+
+                }
+
+            </div>
+
+            }
+
+        </div>
+
+        <div class="cart">
+
+            <h2>Order Cart</h2>
+
+            @for(item of cart; track item.book.id){
+
+            <div class="cart-item">
+
+                <span>
+
+                    {{item.book.title}}
+
+                    x{{item.quantity}}
+
+                </span>
+
+                <span>
+
+                    ${{item.book.price*item.quantity}}
+
+                </span>
+
+                <button
+                    class="delete"
+                    (click)="removeItem(item)">
+
+                    X
+
+                </button>
+
+            </div>
+
+            }
+
+            <hr>
+
+            <h2>
+
+                Total:
+
+                ${{getTotal()}}
+
+            </h2>
+
+            <button
+                class="place"
+
+                (click)="placeOrder()">
+
+                Place Order
+
+            </button>
+
+            <button
+                class="cancel"
+
+                (click)="cancel()">
+
+                Cancel
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>

@@ -1,0 +1,92 @@
+<div class="container">
+
+    <div class="header">
+
+        <h1>📚 Book Catalog</h1>
+
+        <button class="add-btn" (click)="addBook()">
+            + Add New Book
+        </button>
+
+    </div>
+
+    <table>
+
+        <thead>
+
+            <tr>
+                <th>Title</th>
+                <th>ISBN</th>
+                <th>Author</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>   
+
+        </thead>
+
+        <tbody>
+
+            @for(book of bookstore.books(); track book.id){
+
+            <tr>
+
+                <td>{{book.title}}</td>
+
+                <td>{{book.isbn}}</td>
+
+                <td>{{book.author}}</td>
+
+                <td>${{book.price}}</td>
+
+                <td>{{book.quantity}}</td>
+
+                <td>
+
+                    @if(book.quantity > 0){
+
+                    <span class="available">
+                        Available
+                    </span>
+
+                    }
+
+                    @else{
+
+                    <span class="out">
+                        Out Of Stock
+                    </span>
+
+                    }
+
+                </td>
+
+                <td class="actions">
+
+                    <button class="view"
+                        (click)="viewBook(book)">
+                        View
+                    </button>
+
+                    <button class="edit"
+                        (click)="editBook(book)">
+                        Edit
+                    </button>
+
+                    <button class="delete"
+                        (click)="deleteBook(book.id)">
+                        Delete
+                    </button>
+
+                </td>
+
+            </tr>
+
+            }
+
+        </tbody>
+
+    </table>
+
+</div>
