@@ -63,12 +63,20 @@ export class OrderForm {
       return;
     }
 
-    this.orderstore.addOrder({
-      date: new Date().toLocaleDateString(),
-      items: [...this.cart]
-    });
+    const payload = {
+      items: this.cart.map((item) => ({
+        bookId: item.book.id,
+        quantity: item.quantity
+      }))
+    };
 
-    this.cancel();
+    this.orderstore.createOrder(payload).subscribe({
+      next: () => {
+        this.orderstore.loadOrders();
+        this.cancel();
+      },
+      error: (err) => console.error('Failed to create order:', err)
+    });
   }
 
   cancel() {

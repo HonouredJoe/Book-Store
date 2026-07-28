@@ -1,4 +1,4 @@
-<mat-toolbar color="primary" class="navbar">
+<mat-toolbar color="primary" class="navbar" *ngIf="authService.isAuthenticated()">
   <span class="logo">📚 Book Store</span>
   <span class="spacer"></span>
 
@@ -9,51 +9,10 @@
   <button mat-button routerLink="/orders" routerLinkActive="active">
     Orders
   </button>
+
+  <button mat-button (click)="logout()">
+    Logout
+  </button>
 </mat-toolbar>
 
-<!-- <div class="page">
-  @switch (screen()) {
-    @case ('book-list') {
-      <app-book-list
-        (addClicked)="selectedBook.set(null); screen.set('book-form')"
-        (editClicked)="selectedBook.set($event); screen.set('book-form')"
-        (viewClicked)="selectedBook.set($event); screen.set('book-details')">
-      </app-book-list>
-    }
-
-    @case ('book-form') {
-      <app-book-form
-        [book]="selectedBook()"
-        (cancelClicked)="screen.set('book-list')">
-      </app-book-form>
-    }
-
-    @case ('book-details') {
-      <app-book-details
-        [book]="selectedBook()"
-        (backClicked)="screen.set('book-list')">
-      </app-book-details>
-    }
-
-    @case ('order-list') {
-      <app-order-list
-        (addClicked)="screen.set('order-form')"
-        (viewClicked)="selectedOrder.set($event); screen.set('order-details')">
-      </app-order-list>
-    }
-
-    @case ('order-form') {
-      <app-order-form
-        (cancelClicked)="screen.set('order-list')">
-      </app-order-form>
-    }
-
-    @case ('order-details') {
-      <app-order-details
-        [order]="selectedOrder()"
-        (backClicked)="screen.set('order-list')">
-      </app-order-details>
-    }
-  }
-</div> -->
 <router-outlet></router-outlet>

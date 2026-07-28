@@ -1,67 +1,57 @@
 import { Injectable, signal } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable, Subscription } from 'rxjs';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class Bookstore {
+  private readonly apiUrl = 'http://localhost:8080/books';
+  private booksSubscription?: Subscription;
 
-  books = signal([
-    {
-      id: 1,
-      title: 'Angular Basics',
-      isbn: '11111',
-      author: 'Ahmed Ali',
-      price: 250,
-      quantity: 10
-    },
-    {
-      id: 2,
-      title: 'Java Programming',
-      isbn: '22222',
-      author: 'Mohamed Hassan',
-      price: 300,
-      quantity: 5
-    },
-    {
-      id: 3,
-      title: 'Python for Beginners',
-      isbn: '33333',
-      author: 'Sara Mohamed',
-      price: 200,
-      quantity: 0
-    }
-  ]);
+  books = signal<any[]>([]);
   selectedBook = signal<any>(null);
-  addBook(book: any) {
 
-    this.books.update(books => [
-      ...books,
-      {
-        id: books.length + 1,
-        ...book
-      }
-    ]);
+  constructor(private http: HttpClient, private authService: AuthService) {}
 
+  private getHeaders(): HttpHeaders {
+    return this.authService.getAuthHeaders();
   }
-  updateBook(updatedBook: any) {
 
-  this.books.update(books =>
+  getAllBooks(): Observable<any[]> {
+    return this.http.get<any[]>(this.apiUrl, { headers: this.getHeaders() });
+  }
 
-    books.map(book =>
+  loadBooks(): void {
+    this.booksSubscription?.unsubscribe();
 
-      book.id === updatedBook.id
+    this.booksSubscription = this.getAllBooks().subscribe({
+      next: (data) => this.books.set(data),
+      error: (err) => {
+        console.error('Failed to load books from backend:', err);
+        this.books.set([]);
+      }
+    });
+  }
 
-        ? updatedBook
+  addBook(book: any): Observable<any> {
+    return this.http.post<any>(this.apiUrl, book, { headers: this.getHeaders() });
+  }
 
-        : book
+  updateBook(id: number, book: any): Observable<any> {
+    return this.http.put<any>(`${this.apiUrl}/${id}`, book, { headers: this.getHeaders() });
+  }
 
-    )
+  deleteBook(id: number): Observable<any> {
+    return this.http.delete<any>(`${this.apiUrl}/${id}`, { headers: this.getHeaders() });
+  }
 
-  );
+  getBook(id: number): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/${id}`, { headers: this.getHeaders() });
+  }
 
-}
-getBook(id: number) {
-  return this.books().find(book => book.id === id);
-}
-
+  ngOnDestroy(): void {
+    this.booksSubscription?.unsubscribe();
+  }
 }

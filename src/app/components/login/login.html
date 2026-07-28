@@ -1,0 +1,27 @@
+<div class="auth-shell">
+  <mat-card class="auth-card">
+    <div class="brand">📚 Book Store</div>
+    <h1>Welcome back</h1>
+    <p>Sign in to manage your catalog and orders.</p>
+
+    <form [formGroup]="form" (ngSubmit)="submit()">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="email" type="email" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Password</mat-label>
+        <input matInput formControlName="password" type="password" />
+      </mat-form-field>
+
+      <div class="error" *ngIf="errorMessage">{{ errorMessage }}</div>
+
+      <button mat-flat-button color="primary" class="full-width" type="submit">Login</button>
+    </form>
+
+    <p class="switch-link">
+      New here? <a routerLink="/signup">Create an account</a>
+    </p>
+  </mat-card>
+</div>

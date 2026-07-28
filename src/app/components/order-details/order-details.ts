@@ -24,8 +24,10 @@ export class OrderDetails {
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
-      const o = this.orderstore.getOrder(Number(id));
-      if (o) this.order.set(o);
+      this.orderstore.getOrder(Number(id)).subscribe({
+        next: (o) => this.order.set(o),
+        error: (err) => console.error('Failed to load order:', err)
+      });
     }
   }
 

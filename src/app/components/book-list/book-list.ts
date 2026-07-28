@@ -1,11 +1,10 @@
 import { CommonModule } from '@angular/common';
-import { Component, output } from '@angular/core';
+import { Component, OnInit, output } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatTableModule } from '@angular/material/table';
 import { Bookstore } from '../../bookstore';
 import { Router } from '@angular/router';
-
 
 @Component({
   selector: 'app-book-list',
@@ -14,15 +13,18 @@ import { Router } from '@angular/router';
   templateUrl: './book-list.html',
   styleUrl: './book-list.css',
 })
-export class BookList {
-  constructor(public bookstore: Bookstore,private router:Router) {}
-  
-  
+export class BookList implements OnInit {
+  constructor(public bookstore: Bookstore, private router: Router) {}
+
   displayedColumns = ['title', 'isbn', 'author', 'price', 'quantity', 'status', 'actions'];
 
   addClicked = output<void>();
   editClicked = output<any>();
   viewClicked = output<any>();
+
+  ngOnInit(): void {
+    this.bookstore.loadBooks();
+  }
 
   addBook() {
     this.bookstore.selectedBook.set(null);
@@ -31,16 +33,18 @@ export class BookList {
 
   editBook(book: any) {
     this.bookstore.selectedBook.set(book);
-  
     this.router.navigate(['/book-form', book.id]);
   }
 
   deleteBook(id: number) {
-    this.bookstore.books.update((books) => books.filter((book) => book.id !== id));
+    this.bookstore.deleteBook(id).subscribe({
+      next: () => this.bookstore.loadBooks(),
+      error: (err) => console.error('Failed to delete book:', err)
+    });
   }
 
   viewBook(book: any) {
-   this.bookstore.selectedBook.set(book);
-  this.router.navigate(['/book-details', book.id]);
+    this.bookstore.selectedBook.set(book);
+    this.router.navigate(['/book-details', book.id]);
   }
 }
