@@ -48,4 +48,8 @@ export class Orderstore {
 
   }
 
+  getOrder(id: number) {
+    return this.orders().find(o => o.id === id) ?? null;
+  }
+
 }

@@ -1,91 +1,59 @@
-<div class="navbar">
+<mat-toolbar color="primary" class="navbar">
+  <span class="logo">📚 Book Store</span>
+  <span class="spacer"></span>
 
-    <div class="logo">
+  <button mat-button routerLink="/books" routerLinkActive="active">
+    Books
+  </button>
 
-        📚 Book Store
+  <button mat-button routerLink="/orders" routerLinkActive="active">
+    Orders
+  </button>
+</mat-toolbar>
 
-    </div>
+<!-- <div class="page">
+  @switch (screen()) {
+    @case ('book-list') {
+      <app-book-list
+        (addClicked)="selectedBook.set(null); screen.set('book-form')"
+        (editClicked)="selectedBook.set($event); screen.set('book-form')"
+        (viewClicked)="selectedBook.set($event); screen.set('book-details')">
+      </app-book-list>
+    }
 
-    <div class="menu">
+    @case ('book-form') {
+      <app-book-form
+        [book]="selectedBook()"
+        (cancelClicked)="screen.set('book-list')">
+      </app-book-form>
+    }
 
-        <button
-            [class.active]="screen()=='book-list'"
-            (click)="screen.set('book-list')">
+    @case ('book-details') {
+      <app-book-details
+        [book]="selectedBook()"
+        (backClicked)="screen.set('book-list')">
+      </app-book-details>
+    }
 
-            Books
+    @case ('order-list') {
+      <app-order-list
+        (addClicked)="screen.set('order-form')"
+        (viewClicked)="selectedOrder.set($event); screen.set('order-details')">
+      </app-order-list>
+    }
 
-        </button>
+    @case ('order-form') {
+      <app-order-form
+        (cancelClicked)="screen.set('order-list')">
+      </app-order-form>
+    }
 
-        <button
-            [class.active]="screen()=='order-list'"
-            (click)="screen.set('order-list')">
-
-            Orders
-
-        </button>
-
-    </div>
-
-</div>
-
-<div class="page">
-
-@switch(screen()) {
-
-  @case('book-list') {
-
-    <app-book-list
-      (addClicked)="selectedBook.set(null); screen.set('book-form')"
-      (editClicked)="selectedBook.set($event); screen.set('book-form')"
-      (viewClicked)="selectedBook.set($event); screen.set('book-details')">
-    </app-book-list>
-
+    @case ('order-details') {
+      <app-order-details
+        [order]="selectedOrder()"
+        (backClicked)="screen.set('order-list')">
+      </app-order-details>
+    }
   }
-
-  @case('book-form') {
-
-    <app-book-form
-      [book]="selectedBook()"
-      (cancelClicked)="screen.set('book-list')">
-    </app-book-form>
-
-  }
-
-  @case('book-details') {
-
-    <app-book-details
-      [book]="selectedBook()"
-      (backClicked)="screen.set('book-list')">
-    </app-book-details>
-
-  }
-
-  @case('order-list') {
-
-    <app-order-list
-      (addClicked)="screen.set('order-form')"
-      (viewClicked)="selectedOrder.set($event); screen.set('order-details')">
-    </app-order-list>
-
-  }
-
-  @case('order-form') {
-
-    <app-order-form
-      (cancelClicked)="screen.set('order-list')">
-    </app-order-form>
-
-  }
-
-  @case('order-details') {
-
-    <app-order-details
-      [order]="selectedOrder()"
-      (backClicked)="screen.set('order-list')">
-    </app-order-details>
-
-  }
-
-}
-
-</div>
+</div> -->
+<router-outlet></router-outlet>

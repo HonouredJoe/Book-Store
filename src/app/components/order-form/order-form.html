@@ -1,131 +1,56 @@
-<div class="container">
+<mat-card class="container">
+  <h1>Create New Order</h1>
 
-    <h1>Create New Order</h1>
+  <div class="wrapper">
+    <div class="books">
+      <h2>Select Books</h2>
 
-    <div class="wrapper">
+      @for (book of bookstore.books(); track book.id) {
+        <div class="book-card">
+          <div>
+            <strong>{{ book.title }}</strong>
+            <div class="meta">${{ book.price }} · {{ book.quantity }} in stock</div>
+          </div>
 
-        <div class="books">
-
-            <h2>Select Books</h2>
-
-            @for(book of bookstore.books(); track book.id){
-
-            <div class="book-card">
-
-                <div>
-
-                    <strong>{{book.title}}</strong>
-
-                    <br>
-
-                    ${{book.price}}
-
-                    ·
-
-                    {{book.quantity}} in stock
-
-                </div>
-
-                @if(book.quantity>0){
-
-                <div class="actions">
-
-                    <input
-                        type="number"
-                        min="1"
-                        [(ngModel)]="quantities[book.id]">
-
-                    <button
-                        (click)="addToCart(book)">
-
-                        Add
-
-                    </button>
-
-                </div>
-
-                }
-
-                @else{
-
-                <span class="out">
-
-                    Out Of Stock
-
-                </span>
-
-                }
-
+          @if (book.quantity > 0) {
+            <div class="actions">
+              <mat-form-field appearance="outline" class="qty-field">
+                <mat-label>Qty</mat-label>
+                <input matInput type="number" min="1" [(ngModel)]="quantities[book.id]" />
+              </mat-form-field>
+              <button mat-flat-button color="primary" (click)="addToCart(book)">Add</button>
             </div>
-
-            }
-
+          } @else {
+            <mat-chip-set>
+              <mat-chip>Out Of Stock</mat-chip>
+            </mat-chip-set>
+          }
         </div>
-
-        <div class="cart">
-
-            <h2>Order Cart</h2>
-
-            @for(item of cart; track item.book.id){
-
-            <div class="cart-item">
-
-                <span>
-
-                    {{item.book.title}}
-
-                    x{{item.quantity}}
-
-                </span>
-
-                <span>
-
-                    ${{item.book.price*item.quantity}}
-
-                </span>
-
-                <button
-                    class="delete"
-                    (click)="removeItem(item)">
-
-                    X
-
-                </button>
-
-            </div>
-
-            }
-
-            <hr>
-
-            <h2>
-
-                Total:
-
-                ${{getTotal()}}
-
-            </h2>
-
-            <button
-                class="place"
-
-                (click)="placeOrder()">
-
-                Place Order
-
-            </button>
-
-            <button
-                class="cancel"
-
-                (click)="cancel()">
-
-                Cancel
-
-            </button>
-
-        </div>
-
+      }
     </div>
 
-</div>
+    <div class="cart">
+      <h2>Order Cart</h2>
+
+      @for (item of cart; track item.book.id) {
+        <div class="cart-item">
+          <div>
+            <strong>{{ item.book.title }}</strong>
+            <div class="meta">x{{ item.quantity }}</div>
+          </div>
+          <div class="cart-actions">
+            <span>${{ item.book.price * item.quantity }}</span>
+            <button mat-icon-button color="warn" (click)="removeItem(item)">×</button>
+          </div>
+        </div>
+      }
+
+      <mat-divider></mat-divider>
+
+      <h2 class="total">Total: ${{ getTotal() }}</h2>
+
+      <button mat-flat-button color="primary" class="full-width" (click)="placeOrder()">Place Order</button>
+      <button mat-stroked-button color="warn" class="full-width" (click)="cancel()">Cancel</button>
+    </div>
+  </div>
+</mat-card>

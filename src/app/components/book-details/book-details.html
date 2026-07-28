@@ -1,43 +1,21 @@
-<div class="container">
+<mat-card class="container">
+  <h1>📖 Book Details</h1>
 
-    <h1>📖 Book Details</h1>
+  <div class="info">
+    <p><strong>Title:</strong> {{ book().title }}</p>
+    <p><strong>ISBN:</strong> {{ book().isbn }}</p>
+    <p><strong>Author:</strong> {{ book().author }}</p>
+    <p><strong>Price:</strong> ${{ book().price }}</p>
+    <p><strong>Quantity:</strong> {{ book().quantity }}</p>
+    <p>
+      <strong>Status:</strong>
+      @if (book().quantity > 0) {
+        Available
+      } @else {
+        Out Of Stock
+      }
+    </p>
+  </div>
 
-    <div class="info">
-
-        <p><strong>Title:</strong> {{book.title}}</p>
-
-        <p><strong>ISBN:</strong> {{book.isbn}}</p>
-
-        <p><strong>Author:</strong> {{book.author}}</p>
-
-        <p><strong>Price:</strong> ${{book.price}}</p>
-
-        <p><strong>Quantity:</strong> {{book.quantity}}</p>
-
-        <p>
-
-            <strong>Status:</strong>
-
-            @if(book.quantity > 0){
-
-                Available
-
-            }
-
-            @else{
-
-                Out Of Stock
-
-            }
-
-        </p>
-
-    </div>
-
-    <button (click)="back()">
-
-        Back
-
-    </button>
-
-</div>
+  <button mat-flat-button color="primary" (click)="back()">Back</button>
+</mat-card>

@@ -1,185 +1,59 @@
-.container{
-
-    max-width:1200px;
-    margin:40px auto;
-    padding:30px;
-    background:white;
-    border-radius:20px;
-    box-shadow:0 10px 30px rgba(0,0,0,.08);
-
+.container {
+  max-width: 1200px;
+  margin: 24px auto;
+  padding: 24px;
+  border-radius: 20px;
 }
 
-.header{
-
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:30px;
-
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
 }
 
-.header h1{
-
-    font-size:32px;
-    color:#1f2937;
-    margin:0;
-
+.header h1 {
+  margin: 0;
+  font-size: 1.6rem;
+  color: #1f2937;
 }
 
-.add-btn{
-
-    background:#10b981;
-    color:white;
-    border:none;
-    padding:12px 22px;
-    border-radius:10px;
-    font-size:15px;
-    font-weight:600;
-    transition:.25s;
-
+.table-wrap {
+  overflow-x: auto;
 }
 
-.add-btn:hover{
-
-    background:#059669;
-    transform:translateY(-2px);
-
+.book-table {
+  width: 100%;
 }
 
-table{
-
-    width:100%;
-    border-collapse:collapse;
-    overflow:hidden;
-
+.available {
+  color: #16a34a;
+  font-weight: 600;
 }
 
-th{
-
-    background:#2563eb;
-    color:white;
-    padding:16px;
-    text-align:left;
-    font-weight:600;
-
+.out {
+  color: #dc2626;
+  font-weight: 600;
 }
 
-td{
-
-    padding:16px;
-    border-bottom:1px solid #ececec;
-    vertical-align:middle;
-
+.actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
 }
 
-tbody tr{
-
-    transition:.2s;
-
+.actions-cell {
+  min-width: 260px;
 }
 
-tbody tr:hover{
+@media (max-width: 900px) {
+  .container {
+    padding: 20px;
+  }
 
-    background:#f8fbff;
-
-}
-
-.available{
-
-    color:#16a34a;
-    font-weight:600;
-
-}
-
-.out{
-
-    color:#dc2626;
-    font-weight:600;
-
-}
-
-.actions{
-
-    display:flex;
-    gap:8px;
-
-}
-
-.actions button{
-
-    border:none;
-    padding:8px 15px;
-    border-radius:8px;
-    color:white;
-    font-size:14px;
-    font-weight:500;
-    transition:.25s;
-
-}
-
-.actions button:hover{
-
-    transform:translateY(-2px);
-
-}
-
-.view{
-
-    background:#3b82f6;
-
-}
-
-.view:hover{
-
-    background:#2563eb;
-
-}
-
-.edit{
-
-    background:#f59e0b;
-
-}
-
-.edit:hover{
-
-    background:#d97706;
-
-}
-
-.delete{
-
-    background:#ef4444;
-
-}
-
-.delete:hover{
-
-    background:#dc2626;
-
-}
-
-@media(max-width:900px){
-
-    .container{
-
-        padding:20px;
-
-    }
-
-    .header{
-
-        flex-direction:column;
-        align-items:flex-start;
-        gap:15px;
-
-    }
-
-    table{
-
-        display:block;
-        overflow-x:auto;
-
-    }
-
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
 }
